@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catégories - Ebook Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <i class="fas fa-book-open"></i>
+                <h1>Ebook Library</h1>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Rechercher un ebook, auteur...">
+                <button onclick="searchBooks()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="categories-nav">
+        <h3>Catégories</h3>
+        <ul id="categoriesList">
+            <!-- Les catégories seront générées ici -->
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Bannière catégorie -->
+        <div class="category-banner" id="categoryBanner">
+            <div class="category-banner-content">
+                <h1 id="categoryTitle"></h1>
+                <p id="categoryDescription"></p>
+            </div>
+        </div>
+
+        <!-- Filtres -->
+        <div class="category-filters">
+            <div class="filter-group">
+                <label>Trier par :</label>
+                <select id="sortSelect" onchange="sortCategoryBooks()">
+                    <option value="popular">Plus populaires</option>
+                    <option value="new">Nouveautés</option>
+                    <option value="priceAsc">Prix croissant</option>
+                    <option value="priceDesc">Prix décroissant</option>
+                    <option value="rating">Meilleures notes</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Prix :</label>
+                <select id="priceRange" onchange="filterCategoryBooks()">
+                    <option value="all">Tous les prix</option>
+                    <option value="0-5">Moins de 5 €</option>
+                    <option value="5-10">5 € - 10 €</option>
+                    <option value="10-15">10 € - 15 €</option>
+                    <option value="15-20">15 € - 20 €</option>
+                    <option value="20+">Plus de 20 €</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Note minimum :</label>
+                <select id="ratingFilter" onchange="filterCategoryBooks()">
+                    <option value="0">Toutes les notes</option>
+                    <option value="4">4 étoiles et plus</option>
+                    <option value="3">3 étoiles et plus</option>
+                    <option value="2">2 étoiles et plus</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Compteur de résultats -->
+        <div class="results-info">
+            <span id="resultsCount"></span>
+        </div>
+
+        <!-- Grille de livres -->
+        <div class="books-grid" id="categoryBooks">
+            <!-- Les livres de la catégorie seront affichés ici -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+            <!-- La pagination sera générée ici -->
+        </div>
+
+        <!-- Catégories populaires -->
+        <section class="popular-categories">
+            <h2>Autres catégories populaires</h2>
+            <div class="categories-grid" id="popularCategories">
+                <!-- Autres catégories -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ebook Library. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialisation
+        displayCategories();
+        
+        // Récupérer la catégorie sélectionnée
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('cat') || 'Tous';
+        
+        // Charger les livres de la catégorie
+        loadCategoryBooks(category);
+        displayPopularCategories();
+    </script>
+</body>
+</html>

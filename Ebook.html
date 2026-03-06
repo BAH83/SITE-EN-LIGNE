@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail de l'ebook - Ebook Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <i class="fas fa-book-open"></i>
+                <h1>Ebook Library</h1>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Rechercher un ebook, auteur...">
+                <button onclick="searchBooks()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb" id="breadcrumb">
+            <!-- Le chemin sera généré ici -->
+        </div>
+
+        <div class="ebook-detail-container">
+            <div class="ebook-detail-left">
+                <div class="detail-cover" id="detailCover"></div>
+                <div class="detail-rating" id="detailRating"></div>
+            </div>
+            
+            <div class="ebook-detail-right">
+                <div class="detail-header">
+                    <h1 id="detailTitle"></h1>
+                    <p class="detail-author" id="detailAuthor"></p>
+                    <div class="detail-price" id="detailPrice"></div>
+                    <button class="buy-btn" onclick="goToCheckout()">Acheter maintenant</button>
+                </div>
+                
+                <div class="detail-description">
+                    <h3>Résumé</h3>
+                    <p id="detailDescription"></p>
+                </div>
+                
+                <div class="book-info">
+                    <h3>À propos du livre</h3>
+                    <div class="info-stats" id="bookStats"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="similar-books">
+            <h2>Ebooks similaires</h2>
+            <div class="books-grid" id="similarBooks">
+                <!-- Livres similaires -->
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <h2>Avis et critiques</h2>
+            
+            <div class="reviews-summary">
+                <div class="average-rating" id="averageRating"></div>
+                <button class="write-review-btn" onclick="showReviewForm()">Rédiger un avis</button>
+            </div>
+            
+            <div class="reviews-list" id="reviewsList">
+                <!-- Les avis seront affichés ici -->
+            </div>
+            
+            <div class="review-form" id="reviewForm" style="display: none;">
+                <h3>Donnez votre avis</h3>
+                <form onsubmit="submitReview(event)">
+                    <div class="rating-input">
+                        <label>Note :</label>
+                        <div class="stars-input">
+                            <i class="far fa-star" onclick="setRating(1)"></i>
+                            <i class="far fa-star" onclick="setRating(2)"></i>
+                            <i class="far fa-star" onclick="setRating(3)"></i>
+                            <i class="far fa-star" onclick="setRating(4)"></i>
+                            <i class="far fa-star" onclick="setRating(5)"></i>
+                        </div>
+                    </div>
+                    <input type="text" placeholder="Votre nom" required>
+                    <textarea placeholder="Votre avis..." rows="4" required></textarea>
+                    <button type="submit">Publier</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ebook Library. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Charger les détails de l'ebook
+        loadEbookDetails();
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de recherche - Ebook Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <i class="fas fa-book-open"></i>
+                <h1>Ebook Library</h1>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Rechercher un ebook, auteur..." value="">
+                <button onclick="searchBooks()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="categories-nav">
+        <h3>Catégories</h3>
+        <ul id="categoriesList">
+            <!-- Les catégories seront générées ici -->
+        </ul>
+    </nav>
+
+    <main>
+        <div class="search-header">
+            <h2>Résultats de recherche pour : <span id="searchQuery"></span></h2>
+            <p id="resultsCount"></p>
+        </div>
+
+        <div class="filter-bar">
+            <label>Trier par :</label>
+            <select id="sortSelect" onchange="sortResults()">
+                <option value="relevance">Pertinence</option>
+                <option value="priceAsc">Prix croissant</option>
+                <option value="priceDesc">Prix décroissant</option>
+                <option value="rating">Meilleures notes</option>
+                <option value="title">Titre (A-Z)</option>
+            </select>
+            
+            <label>Prix max :</label>
+            <input type="range" id="priceFilter" min="0" max="30" step="1" value="30" onchange="filterResults()">
+            <span id="priceValue">30 €</span>
+        </div>
+
+        <div class="books-grid" id="searchResults">
+            <!-- Les résultats de recherche seront affichés ici -->
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>Aucun résultat trouvé</h3>
+            <p>Essayez avec d'autres mots-clés ou parcourez nos catégories</p>
+            <button onclick="window.location.href='index.html'" class="browse-btn">Parcourir les ebooks</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ebook Library. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialisation
+        displayCategories();
+        
+        // Récupérer la requête de recherche
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('q') || '';
+        
+        // Afficher la requête
+        document.getElementById('searchQuery').textContent = query;
+        document.getElementById('searchInput').value = query;
+        
+        // Effectuer la recherche
+        performSearch(query);
+    </script>
+</body>
+</html>

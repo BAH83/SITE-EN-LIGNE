@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebook Library - Votre bibliothèque numérique</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <h1>Ebook Library</h1>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Rechercher un ebook, auteur...">
+                <button onclick="searchBooks()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="categories-nav">
+        <h3>Catégories</h3>
+        <ul id="categoriesList">
+            <!-- Les catégories seront générées ici -->
+        </ul>
+    </nav>
+
+    <main>
+        <section class="featured-books">
+            <h2>Ebooks populaires</h2>
+            <div class="books-grid" id="booksGrid">
+                <!-- Les livres seront générés ici -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ebook Library. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialisation de la page d'accueil
+        displayCategories();
+        displayRandomBooks(12);
+    </script>
+</body>
+</html>
